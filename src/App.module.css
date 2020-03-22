@@ -1,0 +1,33 @@
+
+    .root {
+      display: 'flex',
+    }
+
+    .content {
+      flex-grow: 1;
+      height: 100vh;
+      overflow: auto;
+    }
+    .container {
+      padding-top: 36px;
+      padding-bottom: 36px;
+    }
+    .fixedHeight {
+      height: 240px,
+    }
+
+    .appBarSpacer{
+      min-height: 56px;
+      }
+
+    @media (min-width:0px) and (orientation: landscape){
+      .appBarSpacer{
+      min-height: 48px;
+      }
+    }
+
+    @media (min-width:600px){
+      .appBarSpacer{
+      min-height: 64px;
+      }
+    }
