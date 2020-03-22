@@ -12,13 +12,6 @@ const shortid = require('shortid');
 
 export default class ExpensesListCmp extends React.Component {
 
-  constructor() {
-    super();
-    this.state = {
-      isModalOpen: false,
-    }
-  }
-
   render() {
     const { expenses } = this.props;
 

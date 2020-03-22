@@ -7,9 +7,11 @@ import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuIcon from '@material-ui/icons/Menu';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import classes from './AppHeader.module.css';
+import classes from '../style.module.css';
+import { connect } from 'react-redux';
+import { removeNotification } from './behavior';
 
-export default function () {
+export function AppHeader(props) {
   return (
     <AppBar position="absolute" className={[classes.appBar, classes.appBarShift].join(' ')}>
       <Toolbar className={classes.toolbar}>
@@ -24,8 +26,10 @@ export default function () {
         <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
           MEDINA-NDFS
           </Typography>
-        <IconButton color="inherit">
-          <Badge badgeContent={4} color="secondary">
+        <IconButton
+          className="toClick"
+          color="inherit" onClick={() => props.removeNotification()}>
+          <Badge badgeContent={props.count} color="secondary">
             <NotificationsIcon />
           </Badge>
         </IconButton>
@@ -33,3 +37,11 @@ export default function () {
     </AppBar>
   );
 }
+
+export function mapStateToProps(state) {
+  return {
+    count: state.notifications.notificationCount
+  }
+}
+
+export default connect(mapStateToProps, { removeNotification })(AppHeader);

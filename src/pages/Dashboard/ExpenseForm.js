@@ -1,6 +1,9 @@
 import React from 'react';
 import Input from '@material-ui/core/Input';
 import DateFnsUtils from '@date-io/date-fns';
+import { connect } from 'react-redux';
+import { addNdf } from './behavior';
+
 import {
   MuiPickersUtilsProvider,
   DatePicker
@@ -12,7 +15,7 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 
 
-export default class ExpenseFormCmp extends React.Component {
+export class ExpenseFormCmp extends React.Component {
 
   constructor(props) {
     super(props);
@@ -56,8 +59,12 @@ export default class ExpenseFormCmp extends React.Component {
   }
 
   handleSubmit(event) {
-    this.props.addExpense(this.state)
+    this.props.addNdf(this.state)
   }
+
+
+
+
 
   render() {
     const classes = { marginTop: '30px', display: 'flex', justifyContent: 'center' }
@@ -111,3 +118,6 @@ export default class ExpenseFormCmp extends React.Component {
     );
   }
 }
+
+
+export default connect(null, { addNdf })(ExpenseFormCmp);
