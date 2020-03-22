@@ -10,6 +10,19 @@ function createData(date, amount) {
 
 export default function ChartCmp({ expenses }) {
   const data = [];
+  expenses.sort(function (b, a) {
+    return new Date(b.date) - new Date(a.date);
+  });
+
+  expenses.forEach(element => {
+    const formattedDate = format(element.date, 'dd/MM/yyyy');
+    var found = data.find(elem => elem.date === formattedDate);
+    if (found) {
+      found.amount += element.amount;
+    } else {
+      data.push(createData(formattedDate, element.amount));
+    }
+  });
   return (
     <React.Fragment>
       <Title>Today</Title>

@@ -20,23 +20,43 @@ const expensesData = [
 
 export default class IndexPage extends React.Component {
 
+  constructor() {
+    super();
+    this.state = {
+      expensesList: [],
+    }
+    this.addExpense = this.addExpense.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({
+      expensesList: expensesData,
+    })
+  }
+
+  addExpense(newExpense) {
+    this.setState({
+      expensesList: [...this.state.expensesList, newExpense],
+    })
+  }
+
   render() {
     return (
       <div>
         <Grid container spacing={3}>
           <Grid item xs={12} md={8} lg={9}>
             <Paper className={[styles.fixedHeight, styles.paper].join(' ')}>
-              <Chart expenses={[]} />
+              <Chart expenses={this.state.expensesList} />
             </Paper>
           </Grid>
           <Grid item xs={12} md={4} lg={3}>
             <Paper className={[styles.fixedHeight, styles.paper].join(' ')}>
-              <Deposits expenses={[]} />
+              <Deposits expenses={this.state.expensesList} />
             </Paper>
           </Grid>
           <Grid item xs={12}>
             <Paper className={[styles.paper].join(' ')}>
-              <ExpensesList expenses={[]} addExpense={() => { }} />
+              <ExpensesList expenses={this.state.expensesList} addExpense={this.addExpense} />
             </Paper>
           </Grid>
         </Grid>

@@ -1,3 +1,5 @@
+/* eslint-disable no-script-url */
+
 import React from 'react';
 import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
@@ -7,7 +9,7 @@ import format from 'date-fns/format';
 
 
 export default function DepositsCmp({ expenses }) {
-  const total = 0;
+  const total = expenses.reduce((a, b) => +a + +b.amount, 0);
   return (
     <React.Fragment>
       <Title>Total Expenses</Title>
