@@ -1,0 +1,15 @@
+.container {
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+
+  .paper {
+    display: flex  !important;
+    padding: 16px  !important;
+    overflow: auto  !important;
+    flex-direction: column  !important;
+  }
+
+  .fixedHeight {
+    height: 240px !important;
+  }
