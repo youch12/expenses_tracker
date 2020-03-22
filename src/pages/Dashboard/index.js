@@ -39,7 +39,6 @@ export class IndexPage extends React.Component {
 
 
 function mapStateToProps(state) {
-  console.log("state ", state)
   return {
     expenses: state.expensesList.expenses
   }
