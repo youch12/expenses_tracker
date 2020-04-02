@@ -19,6 +19,13 @@ const expensesData = [
 ]
 
 export default class IndexPage extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      expenses: expensesData,
+    }
+  }
+
 
   render() {
     return (
@@ -36,7 +43,13 @@ export default class IndexPage extends React.Component {
           </Grid>
           <Grid item xs={12}>
             <Paper className={[styles.paper].join(' ')}>
-              <ExpensesList expenses={[]} addExpense={() => { }} />
+              <ExpensesList expenses={this.state.expenses} callDashboardParent={(values) => {
+                this.setState({
+                  expenses:
+                    [...this.state.expenses, values]
+
+                })
+              }} />
             </Paper>
           </Grid>
         </Grid>

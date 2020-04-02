@@ -13,35 +13,33 @@ const shortid = require('shortid');
 export default class ExpensesListCmp extends React.Component {
 
   render() {
-    const { expenses } = this.props;
-
-  return (
-    <React.Fragment>
-      <Title>Recent Expenses</Title>
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            <TableCell>Date</TableCell>
-            <TableCell>Name</TableCell>
-            <TableCell>Description</TableCell>
-            <TableCell>Payment Method</TableCell>
-            <TableCell align="right">Amount</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {expenses.map(row => (
-            <TableRow key={shortid.generate()}>
-              <TableCell>{format(row.date,'dd/MM/yyyy')}</TableCell>
-              <TableCell>{row.name}</TableCell>
-              <TableCell>{row.description}</TableCell>
-              <TableCell>{row.paymentMethod}</TableCell>
-              <TableCell align="right">{row.amount}</TableCell>
+    return (
+      <React.Fragment>
+        <Title>Recent Expenses</Title>
+        <Table size="small">
+          <TableHead>
+            <TableRow>
+              <TableCell>Date</TableCell>
+              <TableCell>Name</TableCell>
+              <TableCell>Description</TableCell>
+              <TableCell>Payment Method</TableCell>
+              <TableCell align="right">Amount</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-      <ExpenseForm addExpense={this.props.addExpense} />
-    </React.Fragment>
-  );
+          </TableHead>
+          <TableBody>
+            {this.props.expenses.map(row => (
+              <TableRow key={shortid.generate()}>
+                <TableCell>{format(row.date, 'dd/MM/yyyy')}</TableCell>
+                <TableCell>{row.name}</TableCell>
+                <TableCell>{row.description}</TableCell>
+                <TableCell>{row.paymentMethod}</TableCell>
+                <TableCell align="right">{row.amount}</TableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+        <ExpenseForm callParent={(values) => this.props.callDashboardParent(values)} />
+      </React.Fragment>
+    );
   }
 }
